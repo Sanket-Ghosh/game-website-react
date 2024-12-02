@@ -11,12 +11,17 @@ function ListGroup() {
 
   items = [];
 
-  if (items.length === 0) {
-    return <p>No Items Found</p>;
-  }
+  //   Using a constant variable
+  //   const message = items.length === 0 && <p>No items Found</p>;
+
+  // Using a function
+  //   const getMessage = () => {
+  //     return items.length === 0 && <p>No item Found - Calling from function</p>;
+  //   };
   return (
     <>
-      <h1>Header</h1>
+      <h1>List</h1>
+      {items.length === 0 && <p>No item Found</p>}
       <ul className="list-group">
         {items.map((items) => (
           <li key={items}>{items}</li>
