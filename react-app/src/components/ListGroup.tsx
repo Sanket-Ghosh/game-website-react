@@ -6,6 +6,7 @@ function ListGroup() {
     "Delhi",
     "London",
     "Paris",
+    "Kolkata",
   ];
 
   return (
