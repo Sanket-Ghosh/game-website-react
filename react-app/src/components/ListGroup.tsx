@@ -2,17 +2,15 @@
 
 import { useState } from "react";
 
-function ListGroup() {
-  let items = [
-    "New York",
-    "San Francisco",
-    "Tokyo",
-    "Delhi",
-    "London",
-    "Paris",
-    "Kolkata",
-  ];
+// In React We use Props when we need to pass data Dynamically.
+// We need to define the object of the input data i.e. Interface in TypeScript
+// { items: [], heading: String }
+interface Props {
+  items: string[];
+  heading: string;
+}
 
+function ListGroup({ items, heading }: Props) {
   //   Using a constant variable
   //   const message = items.length === 0 && <p>No items Found</p>;
 
@@ -30,12 +28,13 @@ function ListGroup() {
 
   //   State Management
   //   let selectedIndex = 0;
+
   //   Hook ( STATE HOOK)
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item Found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
