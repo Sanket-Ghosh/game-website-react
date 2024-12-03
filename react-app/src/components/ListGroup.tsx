@@ -1,25 +1,56 @@
-function ListGroup() {
-  let items = [
-    "New York",
-    "San Francisco",
-    "Tokyo",
-    "Delhi",
-    "London",
-    "Paris",
-    "Kolkata",
-  ];
+// import { MouseEvent } from "react";
 
-  items = [];
+import { useState } from "react";
 
-  if (items.length === 0) {
-    return <p>No Items Found</p>;
-  }
+// In React We use Props when we need to pass data Dynamically.
+// We need to define the object of the input data i.e. Interface in TypeScript
+// { items: [], heading: String }
+interface Props {
+  items: string[];
+  heading: string;
+}
+
+function ListGroup({ items, heading }: Props) {
+  //   Using a constant variable
+  //   const message = items.length === 0 && <p>No items Found</p>;
+
+  // Using a function
+  //   const getMessage = () => {
+  //     return items.length === 0 && <p>No item Found - Calling from function</p>;
+  //   };
+
+  //   In case of handling events instead of writing the logic directly into jsx markup we should use separete function like this below
+
+  //   Event Handler
+  //   const handleClick = (event: MouseEvent) => {
+  //     console.log(event);
+  //   };
+
+  //   State Management
+  //   let selectedIndex = 0;
+
+  //   Hook ( STATE HOOK)
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   return (
     <>
-      <h1>Header</h1>
+      <h1>{heading}</h1>
+      {items.length === 0 && <p>No item Found</p>}
       <ul className="list-group">
-        {items.map((items) => (
-          <li key={items}>{items}</li>
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+          >
+            {item}
+          </li>
         ))}
       </ul>
     </>
